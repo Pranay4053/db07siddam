@@ -4,7 +4,7 @@ Sai Pranay Siddam
 
 [heroku server](https://db07siddam.herokuapp.com/)
 
-Class Petrol
+Class Fruit
 
 Fruit_type(string)
 quantity(number)
