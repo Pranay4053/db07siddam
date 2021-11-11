@@ -1,14 +1,37 @@
 extends layout
 
+
+
 block content
+
   h1= title
-  - const fruit = ['fruit_type','quantity','cost']
-  - let results;
-  script.
-    function buy(x){
-      alert('purchased item ' + x)
-   } 
-  div(class='container-fluid')
-    div(class='row')
-      each results, index in fruit
-        div(class='col-sm-2' onclick='buy('+index+')') #{results}
+
+ 
+
+  div(class = "container-fluid")
+
+    div(class = "row")
+
+     each form,index in results
+
+        div(class="col-sm-4" onclick=`buy(${index})`) fruit: #{form.fruit_type}
+
+        br
+
+        br
+
+        div(class="col-sm-4" onclick=`buy(${index})`) price: #{form.quantity}
+
+        br
+
+        br  
+
+        div(class="col-sm-4" onclick=`buy(${index})`) toppings: #{form.cost}
+
+        script.
+
+                function buy(itemNo){
+
+                    alert(`You purchased items ${itemNo+1}`)
+
+                }
