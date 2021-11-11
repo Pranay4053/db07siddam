@@ -9,3 +9,4 @@ Class Fruit
 Fruit_type(string)
 quantity(number)
 cost(number)
+
