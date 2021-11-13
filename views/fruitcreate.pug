@@ -1,0 +1,37 @@
+extends layout 
+ 
+block content 
+  h1= title  
+  div
+    form(id='fruitForm', action="/resource/fruits", method="POST") 
+        div
+            label(for='fruit_type' ) fruit type 
+            input#fruit_type(type='text', name='fruit_type' ) 
+        div
+            label(for='size' ) fruit quantity 
+            input#quantity(type='text', name='size' ) 
+        div
+            label(for='cost' ) fruit cost 
+            input#cost(type='number', name='cost' ) 
+        div
+            input(type="submit"  ) 
+        div     
+            a(href='/fruit' ) Go To fruits
+    
+    script. 
+        document.forms['fruitForm'].addEventListener('submit', (event) => { 
+        event.preventDefault(); 
+        // TODO do something here to show user that form is being submitted 
+        fetch(event.target.action, { 
+            method: 'POST', 
+            body: new URLSearchParams(new FormData(event.target)) // event.target is the form 
+        }).then((resp) => { 
+            return resp.json(); // or resp.text() or whatever the server sends 
+        }).then((body) => { 
+            alert("Save succeded") 
+            // TODO handle body 
+        }).catch((error) => { 
+            // TODO handle error 
+            alert("Save failed " + error ) 
+        }); 
+        }); 

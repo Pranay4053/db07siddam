@@ -1,0 +1,47 @@
+extends layout 
+ 
+block content 
+  h1= title 
+ 
+  - let id = toShow._id 
+  - let type = toShow.fruit_type 
+  - let cost = toShow.cost 
+  - let quantity = toShow.quantity 
+  div 
+    div
+      div Fruit ID: 
+      div(class=' mr-3 col-sm-6' id="id" data=id) #{id} 
+    div
+      div Fruit Type: 
+      div #{type} 
+    div
+      div(class=' mr-3  col-sm-6') Fruit quantity  : 
+      div  #{quantity} 
+    div
+      div Fruit Cost: 
+      div $#{cost}
+    div
+      input( type="submit" value="Delete" id="delete")      
+      a(href='/fruit') Cancel
+  script. 
+    document.getElementById('delete').addEventListener('click', (event) => { 
+
+        var id =document.getElementById('id').getAttribute("data");
+      event.preventDefault(); 
+     
+      // TODO do something here to show user that form is being submitted 
+      var x ='/resource/fruits/'+id;
+     
+
+      fetch(x, { 
+        method: 'DELETE'
+      }).then((resp) => { 
+        return resp.json(); // or resp.text() or whatever the server sends 
+      }).then((body) => { 
+        alert("Deleted succeded") 
+        // TODO handle body 
+      }).catch((error) => { 
+        // TODO handle error 
+        alert("Deleted failed " + error ) 
+      }); 
+    }); 

@@ -5,28 +5,38 @@ extends layout
 block content
 
   h1= title
+  a(href="fruit/create") Create  
 
  
 
   div(class = "container-fluid")
 
-    div(class = "row")
+    div(class = "row bg-secondary")
 
      each form,index in results
 
-        div(class="col-sm-4" onclick=`buy(${index})`) fruit: #{form.fruit_type}
+        div(class="col-sm-3" onclick=`buy(${index})`) fruit: #{form.fruit_type}
 
         br
 
         br
 
-        div(class="col-sm-4" onclick=`buy(${index})`) price: #{form.quantity}
+        div(class="col-sm-3" onclick=`buy(${index})`) Quantity: #{form.quantity}
 
         br
 
         br  
 
-        div(class="col-sm-4" onclick=`buy(${index})`) toppings: #{form.cost}
+        div(class="col-sm-3" onclick=`buy(${index})`) Cost: #{form.cost}
+        
+        br
+        br
+        div(class="col-sm-3" onclick=`buy(${index})`) Actions(  
+          a(href="fruit/delete/?id="+form._id) Delete  
+          a(href="fruit/update/?id="+form._id) Edit  
+          a(href="fruit/detail/?id="+form._id) View )
+
+        
 
         script.
 

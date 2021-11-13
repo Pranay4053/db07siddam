@@ -1,0 +1,24 @@
+extends layout 
+ 
+block content 
+  h1= title 
+ 
+  - let id = toShow._id 
+  - let type = toShow.fruit_type 
+  - let cost = toShow.cost 
+  - let size = toShow.quantity 
+  div 
+    div 
+      div Fruit ID: 
+      div #{id} 
+    div 
+      div Fruit Type: 
+      div #{type} 
+    div 
+      div(class=' mr-3  col-sm-6') Fruit Quantity  : 
+      div  #{size} 
+    div 
+      div Fruit Cost: 
+      div $#{cost}
+    div      
+            a(href='/luggage' ) Go To Luggages

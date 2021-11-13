@@ -1,0 +1,40 @@
+extends layout 
+ 
+block content 
+  h1= title 
+  - let id = toShow._id 
+  - let type = toShow.fruit_type 
+  - let cost = toShow.cost 
+  - let quantity = toShow.quantity 
+  div
+    form(id='FruitForm', action='/resource/fruits/'+id, method="PUT") 
+        div
+            label(for='fruit_type' class="col-sm-4") Fruit type 
+            input#fruit_type(type='text', name='fruit_type' class="form-control" value=type) 
+        div
+            label(for='quantity' class="col-sm-4") Fruit Quantity 
+            input#quantity(type='text', name='quantity' class="form-control" value=quantity) 
+        div
+            label(for='cost' class="col-sm-4") Fruit cost 
+            input#cost(type='number', name='cost' class="form-control" value=cost) 
+        div(class='text-center')
+            input(type="submit"  ) 
+            a(href='/fruit' ) Go To Fruits
+    
+    script. 
+        document.forms['FruitForm'].addEventListener('submit', (event) => { 
+        event.preventDefault(); 
+        // TODO do something here to show user that form is being submitted 
+        fetch(event.target.action, { 
+            method: 'PUT', 
+            body: new URLSearchParams(new FormData(event.target)) // event.target is the form 
+        }).then((resp) => { 
+            return resp.json(); // or resp.text() or whatever the server sends 
+        }).then((body) => { 
+            alert("Save succeded") 
+            // TODO handle body 
+        }).catch((error) => { 
+            // TODO handle error 
+            alert("Save failed " + error ) 
+        }); 
+        }); 
